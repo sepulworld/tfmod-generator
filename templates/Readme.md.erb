@@ -1,4 +1,4 @@
-<%= modulename.capitalize! %> Terraform module
+<%= name.capitalize! %> Terraform module
 ===========
 
 (Insert description of module here)
@@ -14,12 +14,12 @@ Usage
 -----
 
 ```
-module "<%= modulename %>" {
-  source                = "git::ssh://git@github.com/tf/<%= modulename %>.git?ref=v0.0.1"
+module "<%= name %>" {
+  source                = "git::ssh://git@github.com/tf/<%= name %>.git?ref=v0.0.1"
   tags                  = {
     team        = "platform"
     product     = "silverbullet"
-    service     = "<%= modulename %>"
+    service     = "<%= name %>"
     environment = "dev"
     owner       = "insertyouremail@here.com"
   }

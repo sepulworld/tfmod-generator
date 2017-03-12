@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'tfmod-generator'
+
+class NewTfModule < Thor
+  argument :generate
+  argument :name
+
+  def self.source_root
+    File.dirname(__FILE__)
+  end
+
+  def create_readme_file
+    template('../templates/Readme.md.erb', "#{name}/Readme.md")
+  end
+end
+
+NewTfModule.start
