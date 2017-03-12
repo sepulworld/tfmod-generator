@@ -1,0 +1,36 @@
+<%= modulename.capitalize! %> Terraform module
+===========
+
+(Insert description of module here)
+
+
+Module Input Variables
+----------------------
+
+- `tags` A map of tags that can be used for resource tagging and for naming
+       must include, team, product, service, environment, owner. See usage example.
+
+Usage
+-----
+
+```
+module "<%= modulename %>" {
+  source                = "git::ssh://git@github.com/tf/<%= modulename %>.git?ref=v0.0.1"
+  tags                  = {
+    team        = "platform"
+    product     = "silverbullet"
+    service     = "<%= modulename %>"
+    environment = "dev"
+    owner       = "insertyouremail@here.com"
+  }
+  addyourinputs = "more"
+  foo           = "bar"
+  footoo        = "yes"
+}
+```
+
+Outputs
+=======
+
+ - `aws_instance.private_ip` - private IP
+ - `aws_instance.public_ip`  - public IP
