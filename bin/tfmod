@@ -37,6 +37,10 @@ class TfModule < Thor::Group
     template('../templates/variables.tf.erb', "#{name}/variables.tf")
   end
 
+  def create_remote_scripts_dir
+    empty_directory("#{name}/remote_scripts")
+  end
+
   def create_test_dir
     empty_directory("#{name}/test")
   end
