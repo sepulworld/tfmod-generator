@@ -3,6 +3,7 @@
 require 'thor'
 require 'tfmod/generator'
 
+# Main class
 class NewTfModule < Thor::Group
   include Thor::Actions
 
