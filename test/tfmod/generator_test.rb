@@ -5,7 +5,4 @@ class Tfmod::GeneratorTest < Minitest::Test
     refute_nil ::Tfmod::Generator::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
-  end
 end
