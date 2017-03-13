@@ -6,7 +6,20 @@
 
 ## Usage
 
-TODO: Write usage instructions here
+To generate a git source driven Terraform module, example command:
+
+```
+$ tfmod zookeeper
+      create  zookeeper/Readme.md
+      create  zookeeper/CHANGELOG.md
+      create  zookeeper/.gitignore
+      create  zookeeper/main.tf
+      create  zookeeper/outputs.tf
+      create  zookeeper/variables.tf
+      create  zookeeper/test
+         run  git init zookeeper from "."
+Initialized empty Git repository in /Users/zane/src/tfmod-generator/zookeeper/.git/
+```
 
 ## Development
 

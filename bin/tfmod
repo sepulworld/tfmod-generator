@@ -4,7 +4,7 @@ require 'thor'
 require 'tfmod/generator'
 
 # Main class
-class NewTfModule < Thor::Group
+class TfModule < Thor::Group
   include Thor::Actions
 
   argument :name
@@ -46,4 +46,4 @@ class NewTfModule < Thor::Group
   end
 end
 
-NewTfModule.start
+TfModule.start
