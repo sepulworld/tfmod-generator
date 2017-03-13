@@ -1,5 +1,17 @@
-sudo: false
+sudo: required
+
 language: ruby
+
+before_install:
+  - gem install bundler -v 1.13.7
+
+script:
+  - bundle exec rake test
+
 rvm:
   - 2.4.0
-before_install: gem install bundler -v 1.13.7
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: EKpsyP07VCbhH4Y/kF00ylB14R1iRekrmqcsC6No1Cf2dELwqeypQfwo3lLTZXhB0DjjgZSuXcnzw+QRTx+xZ6U7gsLrGDoKMd/irr+TBb2qyQhSBmjYuxHAWnRBtFdxWztsh77qi2SVDG7VIaJ94HnTTEjvaRhabsrOUI80MD8=
