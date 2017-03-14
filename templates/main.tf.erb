@@ -1,1 +1,71 @@
 // main tf file for <%= name.capitalize %>
+
+// example ec2 resource that leverages Terraform template provider to update user-data
+// some variables presented here are not in the variables.tf generated but are here for example usage
+
+resource "aws_instance" "<%= name -%>" {
+count = "${var.<%= name %>_count}"
+  ami                    = "${var.custom_ebs_ami != "" ? var.custom_ebs_ami : data.aws_ami.ubuntu.id}"
+  instance_type          = "${var.<%= name %>_instance_type}"
+  iam_instance_profile   = "${var.instance_profile}"
+  subnet_id              = "${element(var.subnet_id, count.index)}"
+  vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
+  key_name               = "${var.key_name}"
+  user_data              = "${element(data.template_cloudinit_config.userdata.*.rendered, count.index)}"
+
+  root_block_device {
+    volume_type           = "${var.root_block_device_volume_type}"
+    volume_size           = "${var.root_block_device_volume_size}"
+    delete_on_termination = "${var.root_block_device_delete_on_termination}"
+  }
+
+  lifecycle {
+    ignore_changes = ["ami", "user_data"]
+  }
+
+  tags {
+    Name        = "<%= name %>${count.index + 1}-${var.team}-${var.product}-${var.environment}"
+    Environment = "${var.environment}"
+    Team        = "${var.team}"
+    Service     = "${var.service}"
+    Product     = "${var.product}"
+    Owner       = "${var.owner}"
+    Description = "${var.description}"
+  }
+}
+
+data "template_file" "script" {
+  count    = "${var.<%= name %>_count}"
+  template = "${file("${path.module}/remote_scripts/user-data.sh.tpl")}"
+
+  vars {
+    environment             = "${var.environment}"
+    team                    = "${var.team}"
+    domain                  = "${var.domain}"
+    service                 = "${var.service}"
+    product                 = "${var.product}"
+    <%= name %>_count       = "${count.index + 1}"
+    consul_server_tag_key   = "${var.consul_server_tag_key}"
+    consul_server_tag_value = "${var.consul_server_tag_value}"
+    consul_datacenter       = "${var.consul_datacenter}"
+    consul_agent_version    = "${var.consul_agent_version}"
+    consul_template_version = "${var.consul_template_version}"
+  }
+}
+
+data "template_cloudinit_config" "userdata" {
+  count         = "${var.<%= name %>_count}"
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = "${element(data.template_file.script.*.rendered, count.index)}"
+  }
+
+  // optional script you can pass in as a variable to append to managed user-data template
+  part {
+    content_type = "${var.post_script_type}"
+    content      = "${var.post_script}"
+  }
+}
