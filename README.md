@@ -1,5 +1,8 @@
 # Tfmod::Generator
 
+[![Build Status](https://travis-ci.org/sepulworld/tfmod-generator.svg)](https://travis-ci.org/sepulworld/tfmod-generator)
+[![Gem Version](https://badge.fury.io/rb/tfmod-generator.svg)](http://badge.fury.io/rb/tfmod-generator)
+
 ## Installation
 
     $ gem install tfmod-generator
