@@ -6,7 +6,9 @@ require 'tfmod/generator'
 # Main class
 class TfModuleGenerator < Thor::Group
   include Thor::Actions
-
+  # Override namespace which defaults to classname 
+  # http://www.rubydoc.info/github/erikhuda/thor/Thor%2FBase%2FClassMethods:namespace
+  namespace :''
   argument :name
 
   def self.source_root
