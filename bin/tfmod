@@ -54,6 +54,10 @@ class TfModuleGenerator < Thor::Group
   def git_init
     run("git init #{name}")
   end
+  
+  def create_module_done 
+    puts "#{name} created!"
+  end
 end
 
 TfModuleGenerator.start
