@@ -56,7 +56,7 @@ class TfModuleGenerator < Thor::Group
   end
   
   def create_module_done 
-    puts "#{name} created!"
+    puts "#{Dir.pwd}/#{name} created!"
   end
 end
 
