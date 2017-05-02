@@ -19,9 +19,13 @@ $ tfmod zookeeper
       create  zookeeper/main.tf
       create  zookeeper/outputs.tf
       create  zookeeper/variables.tf
+      create  zookeeper/remote_scripts
+      create  zookeeper/remote_scripts/user-data.sh.tpl
       create  zookeeper/test
+      create  zookeeper/test/test.tf
          run  git init zookeeper from "."
 Initialized empty Git repository in /Users/zane/src/tfmod-generator/zookeeper/.git/
+/Users/zane/src/tfmod-generator/zookeeper created!
 ```
 
 ## Development
