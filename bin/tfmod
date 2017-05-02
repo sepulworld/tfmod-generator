@@ -6,7 +6,7 @@ require 'tfmod/generator'
 # Main class
 class TfModuleGenerator < Thor::Group
   include Thor::Actions
-  # Override namespace which defaults to classname 
+  # Override namespace which defaults to classname
   # http://www.rubydoc.info/github/erikhuda/thor/Thor%2FBase%2FClassMethods:namespace
   namespace :''
   argument :name
@@ -51,12 +51,16 @@ class TfModuleGenerator < Thor::Group
     empty_directory("#{name}/test")
   end
 
+  def create_test_file
+    template('../templates/test.tf.erb', "#{name}/test/test.tf")
+  end
+
   def git_init
     run("git init #{name}")
   end
-  
-  def create_module_done 
-    puts "#{name} created!"
+
+  def create_module_done
+    puts "#{Dir.pwd}/#{name} created!"
   end
 end
 

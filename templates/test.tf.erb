@@ -1,0 +1,28 @@
+provider "aws" {
+  region = "us-west-2"
+}
+
+// test module useage
+module '<%= name %>' {
+  source             = "../"
+  name               = "terraform-test-<%= name %>"
+  tags               = {
+    team        = "${var.tags["team"]}"
+    product     = "${var.tags["product"]}"
+    service     = "${var.tags["service"]}"
+    environment = "${var.tags["environment"]}"
+    owner       = "${var.tags["owner"]}"
+}
+
+// The variables file for <%= name.capitalize %> test
+variables "tags" {
+  type = "map"
+
+  default = {
+    team        = "dataplatform"
+    product     = "silverbullet"
+    service     = "microservice1"
+    environment = "dev"
+    owner       = "zane"
+  }
+}
