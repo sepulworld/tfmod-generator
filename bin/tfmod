@@ -11,7 +11,10 @@ class TfModuleGenerator < Thor::Group
   # Override namespace which defaults to classname
   # http://www.rubydoc.info/github/erikhuda/thor/Thor%2FBase%2FClassMethods:namespace
   namespace :''
-  argument :name
+
+  argument :name, 
+    :type => :string, 
+    :desc => "The name of the module to generate"
 
   def self.source_root
     File.dirname(__FILE__)
