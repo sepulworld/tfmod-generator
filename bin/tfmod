@@ -6,6 +6,8 @@ require 'tfmod/generator'
 # Main class
 class TfModuleGenerator < Thor::Group
   include Thor::Actions
+  desc "Generates a Terraform module with provided NAME"
+
   # Override namespace which defaults to classname
   # http://www.rubydoc.info/github/erikhuda/thor/Thor%2FBase%2FClassMethods:namespace
   namespace :''
